@@ -15,7 +15,7 @@ class Solution:
         
         pos_speed = sorted(pos_speed, key=lambda x : (x[0], x[1]), reverse=True)
         
-        print(pos_speed)
+        # print(pos_speed)
         
         stack = [(pos_speed[0][0], pos_speed[0][1])]
         for pos, s in pos_speed[1:]:
