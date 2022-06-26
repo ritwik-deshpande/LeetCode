@@ -7,7 +7,7 @@ class KthLargest:
     def add(self, val: int) -> int:
         idx = bisect.bisect_left(self.nums, val)
         
-        self.nums = self.nums[:idx] + [val] + self.nums[idx:]
+        self.nums.insert(idx, val)
         
         # print(self.nums)
         
