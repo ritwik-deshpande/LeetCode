@@ -7,31 +7,29 @@
 
 class Solution:
     
-    def f(self, root, path):
+    def f(self, root):
         
         if root:
-            path = path + [root]
-            if root.val == self.p.val:
-                self.p_path = path
-                
-            if root.val == self.q.val:
-                self.q_path = path
-                
-            
-            self.f(root.left, path)
-            self.f(root.right, path)
+            if root.val == self.p.val or root.val == self.q.val:
+                return root
+
+
+            l = self.f(root.left)
+            r = self.f(root.right)
+
+            if l is not None and r is not None:
+                return root
+
+            elif l is not None:
+                return l
+
+            else:
+                return r
         
     
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         self.p = p
         self.q = q
-        self.f(root, [])
         
-        i = 0
-        # print(self.p_path, self.q_path)
         
-        while i < min(len(self.p_path), len(self.q_path)) and self.p_path[i].val == self.q_path[i].val :
-            i = i + 1
-            
-        return self.p_path[i - 1]
-        
+        return self.f(root)
