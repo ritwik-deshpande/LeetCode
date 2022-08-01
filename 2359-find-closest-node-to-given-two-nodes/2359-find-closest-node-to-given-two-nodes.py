@@ -2,7 +2,7 @@ class Solution:
     
     def dfs(self, node, edges, dist, d):
         
-        if dist[node] != float('inf'):
+        if dist[node] != float('inf') or node == -1:
             return dist
         
         dist[node] = d
@@ -50,15 +50,19 @@ class Solution:
         N = len(edges)
         dist1 = [float('inf') for _ in range(N)]
         
-        self.bfs(node1, edges, dist1)
-        # self.dfs(node1, edges, dist1, 0)
+        # self.bfs(node1, edges, dist1)
+        self.dfs(node1, edges, dist1, 0)
         print(dist1)
         
         dist2 = [float('inf') for _ in range(N)]
         
-        self.bfs(node2, edges, dist2)
-        # self.dfs(node2, edges, dist2, 0)
+        # self.bfs(node2, edges, dist2)
+        self.dfs(node2, edges, dist2, 0)
         print(dist2)
+        
+#         [inf, inf, 0, 3, 2, 1]
+#         [0, inf, inf, 1, inf, inf]
+
         
         ans = float('inf')
         d = float('inf')
