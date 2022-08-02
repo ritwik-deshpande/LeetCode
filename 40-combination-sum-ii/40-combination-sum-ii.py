@@ -4,8 +4,8 @@ class Solution(object):
         if (ptr, target, tuple(path)) in self.dp:
             return
         if target == 0:
-            if sorted(path) not in self.ans:
-                self.ans.append(sorted(path))
+            if path not in self.ans:
+                self.ans.append(path)
             
         if ptr == self.N or target < 0:
             return
@@ -23,7 +23,7 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
-        self.nums = candidates
+        self.nums = sorted(candidates)
         self.N = len(self.nums)
         self.ans = []
         self.dp = {}
