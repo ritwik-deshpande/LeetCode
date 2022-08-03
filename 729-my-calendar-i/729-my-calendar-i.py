@@ -1,13 +1,11 @@
 from sortedcontainers import SortedList
-
-class MyCalendar:
+class MyCalendar(object):
 
     def __init__(self):
         self.calendar = SortedList()
         
 
-    def book(self, start: int, end: int) -> bool:
-    
+    def book(self, start, end):
         if self.calendar:
             
             
