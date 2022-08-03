@@ -2,31 +2,26 @@ from sortedcontainers import SortedList
 class MyCalendar(object):
 
     def __init__(self):
-        self.calendar = SortedList()
+        self.calendar = collections.defaultdict(int)
         
 
     def book(self, start, end):
-        if self.calendar:
+        self.calendar[start] += 1
+        self.calendar[end] += -1
+        
+        # print(self.calendar)
+        s = 0
+        for k in sorted(self.calendar.keys()):
             
+            s += self.calendar[k]
             
-            idx = bisect.bisect_left(self.calendar, (start, end))
+            if s == 2:
+                self.calendar[start] -= 1
+                self.calendar[end] += 1
+                return False 
             
-            if idx == 0:
-                if self.calendar[idx][0] < end:
-                    return False
-                
-                
-            elif idx == len(self.calendar):
-                if self.calendar[idx - 1][1] > start:
-                    return False
-                
-            else:
-                if self.calendar[idx][0] < end or  self.calendar[idx - 1][1] > start:
-                    return False
-                
-            
-        self.calendar.add((start, end))
         return True
+        
         
 
 
