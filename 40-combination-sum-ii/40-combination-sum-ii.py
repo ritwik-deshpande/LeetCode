@@ -4,8 +4,7 @@ class Solution(object):
         if (ptr, target, tuple(path)) in self.dp:
             return
         if target == 0:
-            if path not in self.ans:
-                self.ans.append(path)
+            self.ans.add(tuple(path))
             
         if ptr == self.N or target < 0:
             return
@@ -14,7 +13,7 @@ class Solution(object):
             
             self.f(i + 1, target - self.nums[i], path + [self.nums[i]])
         
-            self.dp[(ptr, target, tuple(path))] = True
+        self.dp[(ptr, target, tuple(path))] = True
         
     
     def combinationSum2(self, candidates, target):
@@ -25,7 +24,7 @@ class Solution(object):
         """
         self.nums = sorted(candidates)
         self.N = len(self.nums)
-        self.ans = []
+        self.ans = set()
         self.dp = {}
         
         self.f(0, target, [])
